@@ -1,7 +1,10 @@
-body {
-	background-image: url("https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?crop=entropy&fit=crop&fm=jpg&h=650&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1250");
-
-
+html {
+	background: url("https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?crop=entropy&fit=crop&fm=jpg&h=650&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1250") no-repeat center center fixed;
+	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 h1 {
@@ -9,7 +12,7 @@ h1 {
 	color: #FFFFFF;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	margin-top: 60px;
-	font-family: Verdana;
+	font-family:'Lato', sans-serif;
 }
 
 div {	
