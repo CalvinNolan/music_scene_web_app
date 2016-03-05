@@ -1,9 +1,15 @@
 html {
-	background: url("/images/cover.jpeg") no-repeat center center fixed;
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, .45)
+    ),url("/images/cover.jpeg") no-repeat center center fixed;
+    filter: alpha(opacity=50)\9
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	height: 100%;
+	width: 100%;
 }
 
 h1 {
@@ -24,6 +30,8 @@ form {
 	font-size: 32px;
 	border-radius: 40px;
 }
+
+
 
 .form-control { 
 	border-radius: 40px;
