@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/homepage_stylesheet.css"/>
+    <script src="javascript/jquery-2.2.2.min.js"></script>
+	<title>Music Scene Finder</title>
+</head>
+
+<body>
+    <h1><a href="http://localhost:3030">MUSIC SCENE FINDER</a></h1>
+    <form>
+    	Location:<br>
+    	<input class="form-control locationInput" type="text" name"loc" placeholder="Enter a location" required><br>
+    	Genre:<br>
+    	<input class="form-control genreInput" type="text" name="gen" placeholder="Enter a genre" required><br>
+    	<input class="form-submit" type="button" value="Search">
+    </form>
+    <script>
+        $(".form-submit").click(function() {
+            var location = $(".locationInput").val();
+            var genre = $(".genreInput").val();
+            window.location.href = "http://localhost:3030/playlist?location=" + encodeURIComponent(location) + "&genre=" + encodeURIComponent(genre);
+        });
+    </script>
+    <div id="about_project_text">
+    	<a href="https://github.com/CalvinNolan/music_scene_web_app" target="_blank">About this project</a>
+    </div>   
+</div>
+
+</html>

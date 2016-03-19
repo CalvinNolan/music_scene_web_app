@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/homepage_stylesheet.css"/>
+    <link type="text/css" rel="stylesheet" href="stylesheets/loadingAnimation.css"/>
+    <script src="/javascript/urlParameterParser.js"></script>
+    <script src="/javascript/jquery-2.2.2.min.js"></script>
+	<title>Music Scene Finder</title>
+    <script>
+        // Redirect if a location or genre isn't given.
+        if(getParameterByName("location") === null || getParameterByName("genre") === null) {
+            window.location.href = "http://localhost:3030";
+        }
+    </script>
+</head>
+
+<body>
+    <h1><a href="http://localhost:3030">MUSIC SCENE FINDER</a></h1>
+    <p class="genreLabel"></p>
+    <p class="locationLabel"></p>
+    <script>
+        $(".genreLabel").text(getParameterByName("genre"));
+        $(".locationLabel").text(getParameterByName("location"));
+    </script>
+    <ul class="playlist">
+        <li class="loadingInfo">
+            <div class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+            </div>
+            <p class="generatingLabel">Generating Playlist</p>
+        <li>
+    </ul>
+    <div id="about_project_text">
+        <a href="https://github.com/CalvinNolan/music_scene_web_app" target="_blank">About this project</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var location = getParameterByName("location");
+            var genre = getParameterByName("genre");
+            var requestUrl = "http://localhost:3000?location=" + encodeURIComponent(location) + "&genre=" + encodeURIComponent(genre);
+            console.log("SENDING: " + requestUrl);
+            $.ajax({url: requestUrl,     
+                    type: 'GET',
+                    dataType: 'json', 
+                    success: function(result){
+                        if(result['songs'].length === 0) {
+                            $(".loadingInfo").remove();
+                            $(".playlist").append("<li class='emptyPlaylistLabel'>We couldn't find any songs for this Playlist!<br><br><a href='http://localhost:3030'>Try again</a></li>");
+                        } else {
+                            result['songs'].forEach(function(entry) {
+                                $(".loadingInfo").remove();
+                                $(".playlist").append("<li>" +
+                                    '<iframe width="100%" height="166" scrolling="no" frameborder="no" src=https://w.soundcloud.com/player/?url=' + encodeURIComponent(entry['url']) + '></iframe>'
+                                    + "</li>")
+                            });
+                        }
+
+                        console.log(result['songs']);
+                    }
+            });
+        });
+    </script>
+</div>
+
+</html>
