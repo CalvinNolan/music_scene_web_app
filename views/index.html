@@ -9,23 +9,32 @@
 
 <body>
     <h1><a href="http://localhost:3030">MUSIC SCENE FINDER</a></h1>
+    <div id="about_project_text">
+        <a href="https://github.com/CalvinNolan/music_scene_web_app" target="_blank">About this project</a>
+    </div> 
+    <div class="errors">
+    </div>
     <form>
-    	Location:<br>
-    	<input class="form-control locationInput" type="text" name"loc" placeholder="Enter a location" required><br>
-    	Genre:<br>
-    	<input class="form-control genreInput" type="text" name="gen" placeholder="Enter a genre" required><br>
+    	<p>Location:</p>
+    	<input class="form-control locationInput" type="text" name"loc" placeholder="Enter a location" required>
+    	<p>Genre:</p>
+    	<input class="form-control genreInput" type="text" name="gen" placeholder="Enter a genre" required>
+        <br>
     	<input class="form-submit" type="button" value="Search">
     </form>
     <script>
+        var emptyError = false;
         $(".form-submit").click(function() {
             var location = $(".locationInput").val();
             var genre = $(".genreInput").val();
-            window.location.href = "http://localhost:3030/playlist?location=" + encodeURIComponent(location) + "&genre=" + encodeURIComponent(genre);
+            if(location !== "" && genre !== "") {
+                window.location.href = "http://localhost:3030/playlist?location=" + encodeURIComponent(location) + "&genre=" + encodeURIComponent(genre);
+            } else if (!emptyError) {
+                $(".errors").append("<p>Location and Genre can't be empty!</p>");
+                emptyError = true;
+            }
         });
-    </script>
-    <div id="about_project_text">
-    	<a href="https://github.com/CalvinNolan/music_scene_web_app" target="_blank">About this project</a>
-    </div>   
+    </script>  
 </div>
 
 </html>
