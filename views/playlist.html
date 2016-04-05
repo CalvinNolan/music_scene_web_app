@@ -22,6 +22,7 @@
     </div>
     <p class="genreLabel"></p>
     <p class="locationLabel"></p>
+    <p class="playlistNumberLabel"></p>
     <script>
         $(".genreLabel").text(getParameterByName("genre"));
         $(".locationLabel").text(getParameterByName("location"));
@@ -42,6 +43,7 @@
         $(document).ready(function() {
             var location = getParameterByName("location");
             var genre = getParameterByName("genre");
+            $(".playlistNumberLabel").hide();
             var requestUrl = "http://localhost:3000?location=" + encodeURIComponent(location) + "&genre=" + encodeURIComponent(genre);
             console.log("SENDING: " + requestUrl);
             $.ajax({url: requestUrl,     
@@ -51,6 +53,9 @@
                         if(result['songs'].length === 0) {
                             $(".loadingInfo").remove();
                             $(".playlist").append("<li class='emptyPlaylistLabel'>We couldn't find any songs for this Playlist!<br><br><a href='http://localhost:3030'>Try again</a></li>");
+
+                            $(".playlistNumberLabel").append('Share this playlist with this link: <a href="http://localhost:3030/id/' + result['playlist']['id'] + '">' + 'http://localhost:3030/id/' + result['playlist']['id'] + '</a>');
+                            $(".playlistNumberLabel").show();
                         } else {
                             result['songs'].forEach(function(entry) {
                                 $(".loadingInfo").remove();
@@ -58,6 +63,8 @@
                                     '<iframe width="100%" height="166" scrolling="no" frameborder="no" src=https://w.soundcloud.com/player/?url=' + encodeURIComponent(entry['url']) + '></iframe>'
                                     + "</li>")
                             });
+                            $(".playlistNumberLabel").append('Share this playlist with this link: <a href="http://localhost:3030/id/' + result['playlist']['id'] + '">' + 'http://localhost:3030/id/' + result['playlist']['id'] + '</a>');
+                            $(".playlistNumberLabel").show();
                         }
 
                         console.log(result['songs']);

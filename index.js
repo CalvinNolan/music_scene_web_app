@@ -10,7 +10,12 @@ app.get('/', function(req, res) {
 
 app.get('/playlist', function(req, res) {
 	res.render('playlist.html');
-})
+});
+
+app.get('/id/:id', function(req, res) {
+ 	res.render('playlist_id.html');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
